@@ -1,6 +1,7 @@
 CREATE OR REPLACE TABLE kimia_farma.analisis AS
 SELECT 
   ft.transaction_id,
+  ft.date,
   ft.branch_id,
   kc.branch_name,
   kc.kota,
@@ -32,7 +33,8 @@ SELECT
     WHEN ft.price > 100000 AND ft.price <= 300000 THEN 0.20
     WHEN ft.price > 300000 AND ft.price <= 500000 THEN 0.25
     ELSE 0.30
-  END AS net_profit
+  END AS net_profit,
+  ft.rating as rating_transaksi
 
 FROM 
   kimia_farma.kf_final_transaction ft
